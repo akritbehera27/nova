@@ -1,32 +1,37 @@
-name: Building and Deploying Source Code to GitHub Pages
+name: Deploy Hugo site to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main  # or your default branch (could be 'master')
+
+permissions:
+  contents: write  # Needed to push to gh-pages
 
 jobs:
-  build-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Cloning source 
-    uses: actions/checkout@v4
-    with:
-      submodules: true
-      fetch-depth: 0
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true       # 👉 Pulls your theme correctly
+          fetch-depth: 0
 
-    - name: Setting up Hugo
-      uses: peaceiris/actions-hugo@v2
-      with:
-        hugo-version: 'latest'
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest' # or pin a version like '0.125.4'
 
-    - name: Building Website
-      run: hugo --minify --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" --canonifyURLs
+      - name: Build Hugo site
+        run: hugo --minify --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" --canonifyURLs
 
-    - name: Deploying Static Files To Website
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        publish_dir: ./public
-        publish_branch: gh-pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # 👉 You must create this
+          external_repository: ${{ github.repository }}
+          publish_branch: gh-pages
+          publish_dir: ./public
+          enable_jekyll: false

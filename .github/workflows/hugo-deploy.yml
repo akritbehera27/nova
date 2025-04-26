@@ -11,9 +11,10 @@ jobs:
 
     steps:
     - name: Cloning source 
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive
+    uses: actions/checkout@v4
+    with:
+      submodules: true
+      fetch-depth: 0
 
     - name: Setting up Hugo
       uses: peaceiris/actions-hugo@v2
@@ -21,7 +22,7 @@ jobs:
         hugo-version: 'latest'
 
     - name: Building Website
-      run: hugo --minify --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+      run: hugo --minify --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" --canonifyURLs
 
     - name: Deploying Static Files To Website
       uses: peaceiris/actions-gh-pages@v4

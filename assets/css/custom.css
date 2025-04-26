@@ -1,0 +1,110 @@
+/* Copyright (C) 2025  Akrit Behera
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
+
+
+
+:root {
+  /* Description */
+  --poweredby-text-color:rgb(77, 87, 100);
+}
+
+html.dark {
+  /* Description */
+  --poweredby-text-color:rgb(156, 163, 175);
+}
+
+
+/* Override search result titles */
+body .search-results li a .title {
+  font-size: 10px !important; /* Force small size */
+}
+
+/* Override descriptions */
+body .search-results li a .excerpt {
+  font-size: 8px !important;
+  opacity: 0.8 !important;
+}
+
+body .search-results .prefix{
+  display: none !important;
+}
+
+/* for the main title at the nav bar */
+.hx\:mr-2.hx\:font-extrabold.hx\:inline.hx\:select-none {
+  font-size: 20px;
+}
+
+.blog-list-subheading{
+  margin-bottom: 1rem;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently */
+}
+
+
+/* Pagination controls */
+.pagination a{
+  border-radius: 10px;
+  border: 1px solid #ffffff40;
+}
+
+.pagination span{
+  border-radius: 10px;
+  font-weight: 600;
+  border: 1px solid #ffffffc1;
+}
+
+.pagination #pagination_laps{
+  border-radius: 10px;
+  border: 1px solid #ffffff40;
+}
+
+#pagination_compact{
+  display: none !important;
+}
+
+@media (max-width: 600px){
+  #pagination_full{
+    display: none !important;
+  }
+  #pagination_compact{
+    display: block !important;
+  }
+
+}
+
+/* Posts in blog page */
+.clamp-text{
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.global_powerby_text{
+  color: var(--poweredby-text-color);
+  font-size: 18px;
+}
+
+.global_theme_changer_foot{
+  display: flex;
+  justify-content: space-between;
+}

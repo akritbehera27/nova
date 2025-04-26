@@ -1,0 +1,52 @@
+baseURL: 
+languageCode: en-us
+title: Nova
+theme: hextra
+
+menu:
+  main:
+    - name: Blog
+      pageRef: /blog
+      weight: 1
+    - name: Showcase
+      pageRef: /showcase
+      weight: 2
+    - name: About
+      pageRef: /about
+      weight: 3
+    - name: Search
+      weight: 4
+      params:
+        type: search
+    - name: GitHub
+      weight: 5
+      url: "https://github.com/akritbehera27"
+      params:
+        icon: github
+
+params:
+  navbar:
+    displayTitle: true
+    displayLogo: false
+  
+  footer:
+    displayPoweredBy: false
+  
+  # last modification date
+  displayUpdatedDate: true
+  dateFormat: "January 2, 2006"
+  
+  # theme
+  theme:
+    default: system
+
+  # Search
+  search:
+    enable: true
+    type: flexsearch
+
+    flexsearch:
+      index: content
+  
+  # Pagination page size
+  paginate: 5

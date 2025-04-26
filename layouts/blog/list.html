@@ -1,0 +1,159 @@
+{{ define "main" }}
+<!-- This file is based on code from hextra (MIT License).
+Copyright (c) 2023 Xin
+
+Modifications © 2025 Akrit Behera.
+Licensed under GNU Affero General Public License. -->
+
+  {{- $readMore := (T "readMore") | default "Read more →" -}}
+  <div class="hx:mx-auto hx:flex {{ partial `utils/page-width` . }}">
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true "displayPlaceholder" true) }}
+    <article class="hx:w-full hx:break-words hx:flex hx:min-h-[calc(100vh-var(--navbar-height))] hx:min-w-0 hx:justify-center hx:pb-8 hx:pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+      <main class="hx:w-full hx:min-w-0 hx:max-w-6xl hx:px-6 hx:pt-4 hx:md:px-12">
+        <br class="hx:mt-1.5 hx:text-sm" />
+        {{ if .Title }}
+          <h1 class="hx:text-center hx:mt-2 hx:text-4xl hx:font-bold hx:tracking-tight hx:text-slate-900 hx:dark:text-slate-100">
+            {{ .Title }}
+          </h1>
+        {{ end }}
+
+        <!-- Custom Sub Title function -->
+        {{ if .Params.subTitle }}<p class="hx:justify-center hx:text-center blog-list-subheading">{{ .Params.subTitle }}</p>{{ end }}
+        <!-- end -->
+        
+        <div class="content">{{ .Content }}</div>
+        
+        <!-- Custom pagination functanily -->
+        {{ if .Params.paginateis }}
+
+          <!-- Pagination -->
+          {{- $sortedPages := partial "utils/sort-pages" (dict "page" . "by" site.Params.blog.list.sortBy "order" site.Params.blog.list.sortOrder) -}}
+          {{- $rawPerPage := .Params.paginate | default site.Params.paginate | default 7 -}}
+          {{- $perPage := int $rawPerPage -}}
+          {{- $pages := .Paginate $sortedPages $perPage -}}
+
+          {{- range $pages.Pages }}
+            <div class="hx:mb-10 post-box">
+              <h3>
+                <a style="color: inherit; text-decoration: none;" class="hx:block hx:font-semibold hx:mt-8 hx:text-2xl" href="{{ .RelPermalink }}">
+                  {{ .Title }}
+                </a>
+              </h3>
+              {{- if site.Params.blog.list.displayTags -}}
+                {{ with .Params.tags }}
+                  <p class="hx:opacity-50 hx:text-sm hx:leading-7">
+                    {{- range . }}<a class="hx:inline-block hx:mr-2">#{{ . }}</a>{{ end -}}
+                  </p>
+                {{ end -}}
+              {{- end -}}
+              <p class="hx:opacity-80 hx:mt-4 hx:leading-7 clamp-text">{{- partial "utils/page-description" . -}}</p>
+              <p class="hx:opacity-80 hx:mt-1 hx:leading-7">
+                <a class="hx:text-[color:hsl(var(--primary-hue),100%,50%)] hx:underline hx:underline-offset-2 hx:decoration-from-font" href="{{ .RelPermalink }}">
+                  {{- $readMore -}}
+                </a>
+              </p>
+              <p class="hx:opacity-50 hx:text-sm hx:mt-4 hx:leading-7">{{ partial "utils/format-date" .Date }}</p>
+            </div>
+          {{ end -}}
+
+          <!-- Full Pagination controls -->
+          <div class="pagination noselect" id="pagination_full">
+            <div class="hx:flex hx:justify-center hx:gap-2 hx:mt-8 hx:text-sm">
+              {{ $current := $pages.PageNumber }}
+              {{ $total := $pages.TotalPages }}
+          
+              {{ if $pages.HasPrev }}
+                <a class="hx:px-3 hx:py-1 hx:border hx:rounded" href="{{ $pages.Prev.URL }}">←</a>
+              {{ end }}
+          
+              {{ $start := (sub $current 1) }}
+              {{ $end := (add $current 1) }}
+          
+              {{ if lt $start 1 }}{{ $start = 1 }}{{ end }}
+              {{ if gt $end $total }}{{ $end = $total }}{{ end }}
+          
+              {{ if gt $start 1 }}
+                <a class="hx:px-3 hx:py-1 hx:border hx:rounded" href="{{ (index $pages.Pagers 0).URL }}">1</a>
+                {{ if gt $start 2 }}
+                  <span class="hx:px-2" id="pagination_laps">…</span>
+                {{ end }}
+              {{ end }}
+          
+              {{ range $i := seq $start $end }}
+                {{ $p := index $pages.Pagers (sub $i 1) }}
+                {{ if eq $i $current }}
+                  <span class="hx:px-3 hx:py-1 hx:font-bold hx:border hx:rounded">{{ $i }}</span>
+                {{ else }}
+                  <a class="hx:px-3 hx:py-1 hx:border hx:rounded" href="{{ $p.URL }}">{{ $i }}</a>
+                {{ end }}
+              {{ end }}
+          
+              {{ if lt $end $total }}
+                {{ if lt $end (sub $total 1) }}
+                  <span class="hx:px-2" id="pagination_laps">…</span>
+                {{ end }}
+                <a class="hx:px-3 hx:py-1 hx:border hx:rounded" href="{{ (index $pages.Pagers (sub $total 1)).URL }}">{{ $total }}</a>
+              {{ end }}
+          
+              {{ if $pages.HasNext }}
+                <a class="hx:px-3 hx:py-1 hx:border hx:rounded" href="{{ $pages.Next.URL }}">→</a>
+              {{ end }}
+            </div>
+          </div>
+
+
+        <!-- Compact Pagination controls -->
+        <div class="pagination noselect" id="pagination_compact">
+          <div class="hx:flex hx:justify-center hx:gap-2 hx:mt-8 hx:text-sm">
+            {{ if $pages.HasPrev }}
+              <a class="hx:px-3 hx:py-1 hx:border hx:rounded" href="{{ $pages.Prev.URL }}">←</a>
+            {{ else }}
+              <span class="hx:px-3 hx:py-1 hx:opacity-50">←</span> <!-- Disabled if no previous page -->
+            {{ end }}
+
+            <!-- Current page number -->
+            <span class="hx:px-3 hx:py-1 hx:font-bold hx:border hx:rounded">
+              {{ $pages.PageNumber }}
+            </span>
+
+            {{ if $pages.HasNext }}
+              <a class="hx:px-3 hx:py-1 hx:border hx:rounded" href="{{ $pages.Next.URL }}">→</a>
+            {{ else }}
+              <span class="hx:px-3 hx:py-1 hx:opacity-50">→</span> <!-- Disabled if no next page -->
+            {{ end }}
+          </div>
+        </div>
+        <!-- Pagination end -->
+
+
+        {{ else }}
+          <!-- default code without pagination -->
+          {{- $pages := partial "utils/sort-pages" (dict "page" . "by" site.Params.blog.list.sortBy "order" site.Params.blog.list.sortOrder) -}}
+          {{- range $pages }}
+            <div class="hx:mb-10 post-box">
+              <h3><a style="color: inherit; text-decoration: none;" class="hx:block hx:font-semibold hx:mt-8 hx:text-2xl " href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+              {{- if site.Params.blog.list.displayTags -}}
+                {{ with .Params.tags }}
+                  <p class="hx:opacity-50 hx:text-sm hx:leading-7">
+                    {{- range . }}<a class="hx:inline-block hx:mr-2">#{{ . }}</a>{{ end -}}
+                  </p>
+                {{ end -}}
+              {{- end -}}
+              <p class="hx:opacity-80 hx:mt-4 hx:leading-7 clamp-text">{{- partial "utils/page-description" . -}}</p>
+              <p class="hx:opacity-80 hx:mt-1 hx:leading-7">
+                <a class="hx:text-[color:hsl(var(--primary-hue),100%,50%)] hx:underline hx:underline-offset-2 hx:decoration-from-font" href="{{ .RelPermalink }}">
+                  {{- $readMore -}}
+                </a>
+              </p>
+              <p class="hx:opacity-50 hx:text-sm hx:mt-4 hx:leading-7">{{ partial "utils/format-date" .Date }}</p>
+            </div>
+          {{ end -}}
+          <!-- default end -->
+
+        {{- end -}}
+      </main>
+    </article>
+    <div class="hx:max-xl:hidden hx:h-0 hx:w-64 hx:shrink-0"></div>
+  </div>
+{{- end -}}
+

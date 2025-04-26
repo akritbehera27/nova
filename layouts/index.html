@@ -1,0 +1,46 @@
+{{ define "main" }}
+<!-- Copyright (C) 2025  Akrit Behera
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>. -->
+
+<div class='hx:mx-auto hx:flex {{ partial "utils/page-width" . }}'>
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true "displayPlaceholder" true) }}
+    {{ partial "toc.html" . }}
+    <div class="main_box hx:min-h-[calc(100vh-var(--navbar-height))]">
+        <div id="hero">
+            <div class="geeting_box noselect">
+                <div class="box"></div>
+                <span>Hi, I'm Akrit</span>
+            </div>
+            <div class="main_moto noselect">
+                    <h1 class="main_moto_text">Lets ventrue<br class="breakmoto"> From Micro to Cosmic</h1>
+            </div>
+            <div class="desription noselect">
+                <p class="desription_text">Explore ideas, how-tos and inspirations<br class="breakdes"> accross science, tech, space and other feilds</p>
+            </div>
+            <a href="/blog" id="buttonboxlink" class="noselect">
+                <div class="button">
+                     <span>Get Started</span>
+                </div>
+            </a>
+        </div>
+        <div class="theme_changer_foot">
+            {{ partial "theme-toggle.html" }}
+            <div class="powerby">
+                <a href="/about"><span class="powerby_text">© 2025 By Akrit Behera</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}

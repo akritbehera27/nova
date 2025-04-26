@@ -21,7 +21,7 @@ jobs:
         hugo-version: 'latest'
 
     - name: Building Website
-      run: hugo --minify
+      run: hugo --minify --baseURL "https://akritbehera27.github.io/nova/"
 
     - name: Deploying Static Files To Website
       uses: peaceiris/actions-gh-pages@v4

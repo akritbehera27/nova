@@ -1,0 +1,29 @@
+name: Building and Deploying Source Code to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Cloning source 
+      uses: actions/checkout@v4
+
+    - name: Setting up Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+
+    - name: Building Website
+      run: hugo --minify
+
+    - name: Deploying Static Files To Website
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+        publish_branch: gh-pages

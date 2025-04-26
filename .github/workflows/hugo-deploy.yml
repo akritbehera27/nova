@@ -26,6 +26,6 @@ jobs:
     - name: Deploying Static Files To Website
       uses: peaceiris/actions-gh-pages@v4
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         publish_dir: ./public
         publish_branch: gh-pages

@@ -7,7 +7,7 @@ subTitle: "Open source projects created by Akrit Behera"
 &nbsp;
 &nbsp;
 &nbsp;
-{{< cards >}}
+{{< cards cols="3" >}}
   {{< card link="https://github.com/akritbehera27/hyprdots" image="https://raw.githubusercontent.com/akritbehera27/hyprdots/main/resources/screenshot.png" title="Hyprland">}}
   
   {{< card link="https://github.com/akritbehera27/xdots" image="https://raw.githubusercontent.com/akritbehera27/xdots/main/git-img/light.png" title="Xorg" >}}

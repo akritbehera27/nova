@@ -27,9 +27,11 @@ params:
   navbar:
     displayTitle: true
     displayLogo: false
+    width: full
   
   footer:
     displayPoweredBy: false
+    width: full
   
   # last modification date
   displayUpdatedDate: true
@@ -49,3 +51,7 @@ params:
   
   # Pagination page size
   paginate: 5
+
+  page:
+    # full (100%), wide (90rem), normal (1280px)
+    width: full

@@ -2,8 +2,7 @@
 date: 2025-04-28T13:29:40+05:30
 title: Human History and Skin color
 ---
-
-![](/images/Pasted%20image%2020250428133724.png)
+![](/images/Pasted%20image%2020250428152655.png)
 
 A person's skin color is primarily determined by the amount and type of **melanin**, a pigment produced by specialized cells called **melanocytes** in the skin .When ultraviolet (UV) sunlight hits our skin, people react differently based on their skin color, which is shaped by **biology** and **evolution**. The key factor is **melanin**, the pigment produced by skin cells called melanocytes. There are two forms of melanin: **eumelanin** (causing brown to black tones) and **pheomelanin** (causing reddish tones).
 

@@ -160,7 +160,7 @@ padding: 10px;
 padding-left: 20px;
 padding-right: 20px;
 }
-.button > span{
+.button_text{
 color: var(--button--text-color);
 background-color: var(--button-background-color);
 }

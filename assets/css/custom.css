@@ -131,3 +131,15 @@ body .search-results .prefix{
 .hextra-toc{
   display: none;
 }
+
+/* Customizing pages */
+.content h4 + p,
+.content h5 + p,
+.content h6 + p {
+  margin-top: 0;
+}
+
+.content ul,
+.content ol {
+ margin-top: 0;
+}

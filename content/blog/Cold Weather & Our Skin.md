@@ -1,8 +1,8 @@
 ---
 date: 2025-05-05T11:49:05+05:30
-title: Why do our cheeks & finger tips get pink in cold weather?
+title: Cold Weather & Our Skin
 ---
-![](https://media.istockphoto.com/id/1455396963/vector/woman-wearing-warm-clothes-during-winter-blister-vector-cartoon-illustration.jpg?s=612x612&w=0&k=20&c=YcaIN6id3oGGmKiWzT6lpqbLX-Q9sOHLRX_Zj-QyAK4=)
+### Why do our cheeks and finger tips get pink in cold weather?
 
 Our fingertips and cheeks often turn pink when it's cold due to a process called **reactive vasodilation**, which is part of how your body tries to maintain an appropriate temperature. This cycle of constriction and dilation continues as your body tries to balance keeping warm with protecting skin tissue from cold damage.
 

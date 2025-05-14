@@ -1,5 +1,5 @@
 ---
-date: 2025-04-29T09:01:54+05:30
+date: 2025-05-01T11:49:05+05:30
 title: Can you change your Skin color ?
 ---
 ![](https://media.istockphoto.com/id/1884368685/vector/applause3.jpg?s=612x612&w=0&k=20&c=-2lEQ05qn95bET77_KHObxd7nV-TqFX0mBbrlNLHQpM=)
